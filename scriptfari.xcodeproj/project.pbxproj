@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4637C7AB134CB4D3005A989F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4637C7AA134CB4D3005A989F /* UIKit.framework */; };
+		4637C7AD134CB4D3005A989F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4637C7AC134CB4D3005A989F /* Foundation.framework */; };
+		4637C7AF134CB4D3005A989F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4637C7AE134CB4D3005A989F /* CoreGraphics.framework */; };
+		4637C7B5134CB4D3005A989F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4637C7B3134CB4D3005A989F /* InfoPlist.strings */; };
+		4637C7B8134CB4D3005A989F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4637C7B7134CB4D3005A989F /* main.m */; };
+		4637C7BB134CB4D3005A989F /* scriptfariAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4637C7BA134CB4D3005A989F /* scriptfariAppDelegate.m */; };
+		4637C7BF134CB4D3005A989F /* scriptfariAppDelegate_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 4637C7BE134CB4D3005A989F /* scriptfariAppDelegate_iPhone.m */; };
+		4637C7C2134CB4D3005A989F /* MainWindow_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4637C7C0134CB4D3005A989F /* MainWindow_iPhone.xib */; };
+		4637C7C6134CB4D3005A989F /* scriptfariAppDelegate_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 4637C7C5134CB4D3005A989F /* scriptfariAppDelegate_iPad.m */; };
+		4637C7C9134CB4D3005A989F /* MainWindow_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4637C7C7134CB4D3005A989F /* MainWindow_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4637C7A6134CB4D3005A989F /* scriptfari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scriptfari.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4637C7AA134CB4D3005A989F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4637C7AC134CB4D3005A989F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4637C7AE134CB4D3005A989F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4637C7B2134CB4D3005A989F /* scriptfari-Info.plist */ = {isa = PBXFileReference; path = "scriptfari-Info.plist"; sourceTree = "<group>"; };
+		4637C7B4134CB4D3005A989F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4637C7B6134CB4D3005A989F /* scriptfari-Prefix.pch */ = {isa = PBXFileReference; path = "scriptfari-Prefix.pch"; sourceTree = "<group>"; };
+		4637C7B7134CB4D3005A989F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4637C7B9134CB4D3005A989F /* scriptfariAppDelegate.h */ = {isa = PBXFileReference; path = scriptfariAppDelegate.h; sourceTree = "<group>"; };
+		4637C7BA134CB4D3005A989F /* scriptfariAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = scriptfariAppDelegate.m; sourceTree = "<group>"; };
+		4637C7BD134CB4D3005A989F /* scriptfariAppDelegate_iPhone.h */ = {isa = PBXFileReference; name = scriptfariAppDelegate_iPhone.h; path = iPhone/scriptfariAppDelegate_iPhone.h; sourceTree = "<group>"; };
+		4637C7BE134CB4D3005A989F /* scriptfariAppDelegate_iPhone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = scriptfariAppDelegate_iPhone.m; path = iPhone/scriptfariAppDelegate_iPhone.m; sourceTree = "<group>"; };
+		4637C7C1134CB4D3005A989F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPhone/en.lproj/MainWindow_iPhone.xib; sourceTree = "<group>"; };
+		4637C7C4134CB4D3005A989F /* scriptfariAppDelegate_iPad.h */ = {isa = PBXFileReference; name = scriptfariAppDelegate_iPad.h; path = iPad/scriptfariAppDelegate_iPad.h; sourceTree = "<group>"; };
+		4637C7C5134CB4D3005A989F /* scriptfariAppDelegate_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = scriptfariAppDelegate_iPad.m; path = iPad/scriptfariAppDelegate_iPad.m; sourceTree = "<group>"; };
+		4637C7C8134CB4D3005A989F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = iPad/en.lproj/MainWindow_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4637C7A3134CB4D3005A989F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4637C7AB134CB4D3005A989F /* UIKit.framework in Frameworks */,
+				4637C7AD134CB4D3005A989F /* Foundation.framework in Frameworks */,
+				4637C7AF134CB4D3005A989F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4637C79B134CB4D2005A989F = {
+			isa = PBXGroup;
+			children = (
+				4637C7B0134CB4D3005A989F /* scriptfari */,
+				4637C7A9134CB4D3005A989F /* Frameworks */,
+				4637C7A7134CB4D3005A989F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4637C7A7134CB4D3005A989F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4637C7A6134CB4D3005A989F /* scriptfari.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4637C7A9134CB4D3005A989F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4637C7AA134CB4D3005A989F /* UIKit.framework */,
+				4637C7AC134CB4D3005A989F /* Foundation.framework */,
+				4637C7AE134CB4D3005A989F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4637C7B0134CB4D3005A989F /* scriptfari */ = {
+			isa = PBXGroup;
+			children = (
+				4637C7B9134CB4D3005A989F /* scriptfariAppDelegate.h */,
+				4637C7BA134CB4D3005A989F /* scriptfariAppDelegate.m */,
+				4637C7BC134CB4D3005A989F /* iPhone */,
+				4637C7C3134CB4D3005A989F /* iPad */,
+				4637C7B1134CB4D3005A989F /* Supporting Files */,
+			);
+			path = scriptfari;
+			sourceTree = "<group>";
+		};
+		4637C7B1134CB4D3005A989F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4637C7B2134CB4D3005A989F /* scriptfari-Info.plist */,
+				4637C7B3134CB4D3005A989F /* InfoPlist.strings */,
+				4637C7B6134CB4D3005A989F /* scriptfari-Prefix.pch */,
+				4637C7B7134CB4D3005A989F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4637C7BC134CB4D3005A989F /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				4637C7BD134CB4D3005A989F /* scriptfariAppDelegate_iPhone.h */,
+				4637C7BE134CB4D3005A989F /* scriptfariAppDelegate_iPhone.m */,
+				4637C7C0134CB4D3005A989F /* MainWindow_iPhone.xib */,
+			);
+			name = iPhone;
+			sourceTree = "<group>";
+		};
+		4637C7C3134CB4D3005A989F /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				4637C7C4134CB4D3005A989F /* scriptfariAppDelegate_iPad.h */,
+				4637C7C5134CB4D3005A989F /* scriptfariAppDelegate_iPad.m */,
+				4637C7C7134CB4D3005A989F /* MainWindow_iPad.xib */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4637C7A5134CB4D3005A989F /* scriptfari */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4637C7CC134CB4D3005A989F /* Build configuration list for PBXNativeTarget "scriptfari" */;
+			buildPhases = (
+				4637C7A2134CB4D3005A989F /* Sources */,
+				4637C7A3134CB4D3005A989F /* Frameworks */,
+				4637C7A4134CB4D3005A989F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = scriptfari;
+			productName = scriptfari;
+			productReference = 4637C7A6134CB4D3005A989F /* scriptfari.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4637C79D134CB4D2005A989F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = MosheBerman.com;
+			};
+			buildConfigurationList = 4637C7A0134CB4D2005A989F /* Build configuration list for PBXProject "scriptfari" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4637C79B134CB4D2005A989F;
+			productRefGroup = 4637C7A7134CB4D3005A989F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4637C7A5134CB4D3005A989F /* scriptfari */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4637C7A4134CB4D3005A989F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4637C7B5134CB4D3005A989F /* InfoPlist.strings in Resources */,
+				4637C7C2134CB4D3005A989F /* MainWindow_iPhone.xib in Resources */,
+				4637C7C9134CB4D3005A989F /* MainWindow_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4637C7A2134CB4D3005A989F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4637C7B8134CB4D3005A989F /* main.m in Sources */,
+				4637C7BB134CB4D3005A989F /* scriptfariAppDelegate.m in Sources */,
+				4637C7BF134CB4D3005A989F /* scriptfariAppDelegate_iPhone.m in Sources */,
+				4637C7C6134CB4D3005A989F /* scriptfariAppDelegate_iPad.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4637C7B3134CB4D3005A989F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4637C7B4134CB4D3005A989F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4637C7C0134CB4D3005A989F /* MainWindow_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4637C7C1134CB4D3005A989F /* en */,
+			);
+			name = MainWindow_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		4637C7C7134CB4D3005A989F /* MainWindow_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4637C7C8134CB4D3005A989F /* en */,
+			);
+			name = MainWindow_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4637C7CA134CB4D3005A989F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4637C7CB134CB4D3005A989F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4637C7CD134CB4D3005A989F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "scriptfari/scriptfari-Prefix.pch";
+				INFOPLIST_FILE = "scriptfari/scriptfari-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4637C7CE134CB4D3005A989F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "scriptfari/scriptfari-Prefix.pch";
+				INFOPLIST_FILE = "scriptfari/scriptfari-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4637C7A0134CB4D2005A989F /* Build configuration list for PBXProject "scriptfari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4637C7CA134CB4D3005A989F /* Debug */,
+				4637C7CB134CB4D3005A989F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4637C7CC134CB4D3005A989F /* Build configuration list for PBXNativeTarget "scriptfari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4637C7CD134CB4D3005A989F /* Debug */,
+				4637C7CE134CB4D3005A989F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4637C79D134CB4D2005A989F /* Project object */;
+}
