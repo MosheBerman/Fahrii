@@ -46,6 +46,6 @@
 //  Parse out a userscript
 //
 
--(NSDictionary *)parseUserscriptString:(NSString *)script;
+-(NSMutableDictionary *)parseUserscriptString:(NSString *)script;
 
 @end

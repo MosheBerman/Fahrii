@@ -219,16 +219,60 @@
     
     NSString *scriptText = [NSString stringWithContentsOfURL:self.workingURL encoding:NSUTF8StringEncoding error:&error];
     
+    //
+    //  Check for an error. If the string loaded, parse the script
+    //
+    
+    NSMutableDictionary *scriptInfo;
+    
     if (error != nil) {
+        
+        //
+        //  TODO: Inform the user...
+        //
+        
         NSLog(@"Failed to open userscript for use. Returning. Error: %@", [error userInfo]);
         return;
     }else if(scriptText != nil){
-        [self parseUserscriptString:scriptText];        
-    }else{
-        NSLog(@"Nil string... %@", [self.workingURL description]);
+        scriptInfo = [self parseUserscriptString:scriptText];        
     }
     
+    if (scriptInfo == nil) {
+        NSLog(@"Could not parse script info");
+        return;
+    }
+    
+    //
+    //  Grab a reference to the App Delegate's managed object context
+    //
+    
     NSManagedObjectContext *context = ((scriptfariAppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+    
+    //
+    //  If there is no user supplied name, 
+    //  use the filename as the script name.
+    //
+    
+    if ([scriptInfo objectForKey:@"name"] == nil) {
+        [scriptInfo setObject:[self.workingURL baseURL] forKey:@"name"];
+    }    
+    
+    //
+    //  Use the current base URL as the namespace,
+    //  if there is no user supplied value
+    //
+    
+    if ([scriptInfo objectForKey:@"namespace"] == nil) {
+        [scriptInfo setObject:[self.workingURL baseURL] forKey:@"namespace"];
+    }
+    
+    //
+    //
+    //
+    
+    if ([scriptInfo objectForKey:@"description"] == nil) {
+        [scriptInfo setObject:@"" forKey:@"description"];
+    }
     
     //
     //  Load ExecutionRules
@@ -242,8 +286,28 @@
     for (ExecutionRule *rule in executionRules) {
        
         //
-        //  Check if the new script contains any of these rules
+        //  Check the includes/excludes for existing entities
         //
+        //  YES is include, NO is exclude
+        //
+        
+        if([rule.RuleType boolValue] == YES){
+            for (NSString *URLAsString in [scriptInfo objectForKey:@"includes"]){
+                if ([rule.URLString isEqualToString:URLAsString]) {
+                    //
+                    //  Add include
+                    //
+                }
+            }
+        }
+        
+        if([rule.RuleType boolValue] == NO){
+            for (NSString *URLAsString in [scriptInfo objectForKey:@"excludes"]){
+                if ([rule.URLString isEqualToString:URLAsString]) {
+                    
+                }
+            }
+        }
     }
     
     //
@@ -280,7 +344,7 @@
      //
      //
      
--(NSDictionary *)parseUserscriptString:(NSString *)script{
+-(NSMutableDictionary *)parseUserscriptString:(NSString *)script{
 
     //
     //  Create a dictionary to store the metadata in
@@ -292,27 +356,35 @@
     
     [script enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
         
-        NSLog(@"Line: %@", line);
+        //NSLog(@"Line: %@", line);
         
-        if([line containsKeyWord:@"author"]) {
-            
-            //
-            //  Get the author
-            //
+        //
+        //  Get the author, if we find it
+        //
+        
+        if([line containsKeyWord:@"author"]){
             
             NSString *author = [line valueForUserscriptKeyword:@"author"];
             
-            [scriptInfo setObject:author forKey:@"Author"];
+            [scriptInfo setObject:author forKey:@"author"];
         }
         
         //
         //  Parse the namespace - We only read the first one
         //
         
-        if ([line containsKeyWord:@"namespace"]) {
+        if ([line containsKeyWord:@"namespace"] && [scriptInfo objectForKey:@"namespace"] == nil) {
             
             [scriptInfo setObject:[line valueForUserscriptKeyword:@"namespace"] forKey:@"namespace"];
             
+        }
+        
+        //
+        //  Read out the description.
+        //
+        
+        if ([line containsKeyWord:@"description"]) {
+            [scriptInfo setObject:[line valueForUserscriptKeyword:@"description"] forKey:@"description"];
         }
 
         if ([line containsKeyWord:@"include"]) {
@@ -321,7 +393,7 @@
         
         
         if ([line containsKeyWord:@"exclude"]) {
-            [includes addObject:[line valueForUserscriptKeyword:@"include"]];
+            [includes addObject:[line valueForUserscriptKeyword:@"exclude"]];
         }        
         
         //
@@ -335,13 +407,17 @@
     
     NSLog(@"Done.");
     
+    //
+    //  Store includes and excludes in the dictionary
+    //
+    
     [scriptInfo setObject:includes forKey:@"includes"];
     [scriptInfo setObject:excludes forKey:@"excludes"];
     
     [includes release];
     [excludes release];
     
-    return [[scriptInfo copy] autorelease];
+    return scriptInfo;
 }
 
 @end

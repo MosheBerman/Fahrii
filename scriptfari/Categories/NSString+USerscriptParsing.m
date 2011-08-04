@@ -12,16 +12,38 @@
 
 - (NSString *)valueForUserscriptKeyword:(NSString *)keyword{
     
+    //
+    //  Add the @ symbol to the beginning of the given string
+    //
+    
     NSString *keyWordWithAtSymbol = [NSString stringWithFormat:@"@%@", keyword];
-    return [self stringByReplacingCharactersInRange:NSMakeRange(0, [self rangeOfString:keyWordWithAtSymbol].location+[self rangeOfString:keyWordWithAtSymbol].length) withString:@""];
+    
+    //
+    //  Get the range of the string
+    //
+    
+    NSRange range = NSMakeRange(0, [self rangeOfString:keyWordWithAtSymbol].location+[self rangeOfString:keyWordWithAtSymbol].length);
+    
+    //
+    //  Return the value without the key
+    //
+    
+    return [self stringByReplacingCharactersInRange:range withString:@""];
 }
 
+//
+//
+//
 
 - (BOOL) containsKeyWord:(NSString *)keyword{
 
     return [self containsValue:[NSString stringWithFormat:@"@%@", keyword]];
 
 }
+
+//
+//
+//
 
 - (BOOL) containsValue:(NSString *)value{
     if ([self rangeOfString:value].location != NSNotFound) {

@@ -6,5 +6,7 @@
 // @include http://google.com
 // @include http://www.google.com
 // @include http://mosheberman.com
+// @exclude http://stackoverflow.com
 // ==/UserScript==
+
 alert('Hello Some of the world!');

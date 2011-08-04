@@ -12,7 +12,7 @@
         <attribute name="scriptAuthor" optional="YES" attributeType="String"/>
         <attribute name="scriptDescription" optional="YES" attributeType="String"/>
         <attribute name="scriptName" optional="YES" attributeType="String"/>
-        <relationship name="includeAndExcludes" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="ExecutionRule" inverseName="Userscript" inverseEntity="ExecutionRule"/>
+        <relationship name="includeAndExcludes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExecutionRule" inverseName="Userscript" inverseEntity="ExecutionRule"/>
     </entity>
     <elements>
         <element name="ExecutionRule" positionX="423" positionY="225" width="128" height="90"/>
