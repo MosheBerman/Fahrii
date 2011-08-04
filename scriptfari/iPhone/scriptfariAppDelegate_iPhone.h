@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "scriptfariAppDelegate.h"
 
+
 @interface scriptfariAppDelegate_iPhone : scriptfariAppDelegate {
-    
+ 
 }
 
 @end
