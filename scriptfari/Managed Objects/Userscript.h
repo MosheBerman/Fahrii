@@ -17,8 +17,13 @@
 @property (nonatomic, retain) NSString * pathToScript;
 @property (nonatomic, retain) NSString * scriptAuthor;
 @property (nonatomic, retain) NSString * scriptDescription;
+@property (nonatomic, retain) NSString * scriptIconPath;
+@property (nonatomic, retain) NSDate *scriptInstallDate;
 @property (nonatomic, retain) NSString * scriptName;
+
+@property (nonatomic, retain) NSNumber *scriptVersion;
 @property (nonatomic, retain) NSSet *includeAndExcludes;
+
 @end
 
 @interface Userscript (CoreDataGeneratedAccessors)

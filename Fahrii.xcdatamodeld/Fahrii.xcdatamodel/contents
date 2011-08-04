@@ -11,11 +11,14 @@
         <attribute name="pathToScript" attributeType="String"/>
         <attribute name="scriptAuthor" optional="YES" attributeType="String"/>
         <attribute name="scriptDescription" optional="YES" attributeType="String"/>
+        <attribute name="scriptIconPath" optional="YES" attributeType="String"/>
+        <attribute name="scriptInstallDate" optional="YES" attributeType="Date"/>
         <attribute name="scriptName" optional="YES" attributeType="String"/>
+        <attribute name="scriptVersion" optional="YES" attributeType="Double"/>
         <relationship name="includeAndExcludes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExecutionRule" inverseName="Userscript" inverseEntity="ExecutionRule"/>
     </entity>
     <elements>
         <element name="ExecutionRule" positionX="423" positionY="225" width="128" height="90"/>
-        <element name="Userscript" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Userscript" positionX="160" positionY="192" width="128" height="195"/>
     </elements>
 </model>

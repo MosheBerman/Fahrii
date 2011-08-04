@@ -237,6 +237,10 @@
         scriptInfo = [self parseUserscriptString:scriptText];        
     }
     
+    //
+    //  If there's no script info, we can't save the script
+    //
+    
     if (scriptInfo == nil) {
         NSLog(@"Could not parse script info");
         return;
@@ -267,7 +271,7 @@
     }
     
     //
-    //
+    //  If there's no description, set an empty one
     //
     
     if ([scriptInfo objectForKey:@"description"] == nil) {
@@ -275,7 +279,24 @@
     }
     
     //
-    //  Load ExecutionRules
+    //  Create a script managed object
+    //
+    
+    Userscript *newScript = [[Userscript alloc] initWithEntity:[NSEntityDescription entityForName:@"Userscript" inManagedObjectContext:context] insertIntoManagedObjectContext:context];
+    
+    //
+    //  Save out the basic information that we can
+    //
+    
+    [newScript setScriptAuthor:[scriptInfo valueForKey:@"author"]];
+    [newScript setScriptDescription:[scriptInfo valueForKey:@"description"]];
+    [newScript setScriptInstallDate:[NSDate date]];
+    [newScript setScriptName:[scriptInfo valueForKey:@"name"]];
+    [newScript setNamespaceOfScript:[scriptInfo valueForKey:@"namespace"]];
+    [newScript setScriptVersion:[scriptInfo objectForKey:@"version"]];
+    
+    //
+    //  Load existing ExecutionRules
     //
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -305,6 +326,9 @@
             for (NSString *URLAsString in [scriptInfo objectForKey:@"excludes"]){
                 if ([rule.URLString isEqualToString:URLAsString]) {
                     
+                    //
+                    //  Add exclude
+                    //
                 }
             }
         }
@@ -324,8 +348,10 @@
         //  Inform the user of an error.
         //
         
-        NSLog(@"Failed load: ");
+        NSLog(@"Failed save: %@", [error userInfo]);
     }
+    
+    [newScript release];
     
     //
     //  Zing!
@@ -395,6 +421,10 @@
         if ([line containsKeyWord:@"exclude"]) {
             [includes addObject:[line valueForUserscriptKeyword:@"exclude"]];
         }        
+        
+        if ([line containsKeyWord:@"version"]) {
+            [scriptInfo setObject:[NSNumber numberWithDouble:[[line valueForUserscriptKeyword:@"version"]doubleValue]]forKey:@"version"];
+        }
         
         //
         //  Stop parsing at this point, we read out the metadata

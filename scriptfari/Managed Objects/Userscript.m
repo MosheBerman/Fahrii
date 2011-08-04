@@ -16,7 +16,10 @@
 @dynamic pathToScript;
 @dynamic scriptAuthor;
 @dynamic scriptDescription;
+@dynamic scriptIconPath;
+@dynamic scriptInstallDate;
 @dynamic scriptName;
+@dynamic scriptVersion;
 @dynamic includeAndExcludes;
 
 @end
