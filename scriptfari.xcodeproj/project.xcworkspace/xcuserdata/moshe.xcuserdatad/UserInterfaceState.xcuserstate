@@ -4295,9 +4295,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>334217565.96829498</real>
-		<string>{13563, 1030}</string>
-		<string>{14727, 0}</string>
+		<real>334217657.106089</real>
+		<string>{13858, 984}</string>
+		<string>{14673, 0}</string>
 		<string>-parseUserscriptString:</string>
 		<dict>
 			<key>$class</key>
@@ -18687,9 +18687,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>334217565.96429598</real>
-		<string>{13563, 1030}</string>
-		<string>{14727, 0}</string>
+		<real>334217657.10225099</real>
+		<string>{13858, 984}</string>
+		<string>{14673, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -20935,7 +20935,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>99</integer>
+					<integer>1466</integer>
 				</dict>
 			</array>
 		</dict>
@@ -21199,7 +21199,7 @@
 				<integer>1483</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>334217514.14730299</real>
+			<real>334217652.073008</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -21210,7 +21210,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 2:11 AM</string>
+		<string>Today at 2:14 AM</string>
 		<integer>234</integer>
 		<dict>
 			<key>$class</key>

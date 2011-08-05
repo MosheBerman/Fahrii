@@ -528,10 +528,10 @@
 
         
         //
-        //  Parse the script nam3
+        //  Parse the script name
         //
         
-        if ([line containsKeyWord:@"name"]) {
+        if ([line containsKeyWord:@"name"] && ![line containsKeyWord:@"namespace"]) {
             [scriptInfo setObject:[line valueForUserscriptKeyword:@"name"] forKey:@"name"];   
         }
         
