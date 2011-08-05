@@ -49,6 +49,12 @@
 -(NSMutableDictionary *)parseUserscriptString:(NSString *)script;
 
 //
+//  Run applicable userscripts
+//
+
+- (void) runApplicableUserscripts;
+
+//
 //  Create a UUID
 //
 

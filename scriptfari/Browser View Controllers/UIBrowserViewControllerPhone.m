@@ -7,6 +7,7 @@
 //
 
 #import "UIBrowserViewControllerPhone.h"
+#import "UIScriptManagerViewController.h"
 
 @implementation UIBrowserViewControllerPhone
 
@@ -29,14 +30,21 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [self.navBar setFrame:CGRectMake(0, 0, self.navBar.frame.size.width, self.navBar.frame.size.height)];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    NSLog(@"View will appear.");
+    
+    [self.navBar setFrame:CGRectMake(0, 0, self.navBar.frame.size.width, self.navBar.frame.size.height)];
+}
+
+- (void)viewDidUnload{
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -46,6 +54,25 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+
+//
+//  Create a script manager and then show it
+//
+
+
+- (IBAction)showScriptManager:(id)sender{
+    
+    UIScriptManagerViewController *scriptManager = [[UIScriptManagerViewController alloc] initWithStyle:UITableViewStylePlain];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:scriptManager];
+    
+    [scriptManager release];
+    
+    [self presentModalViewController:navController animated:YES];
+    
+    [navController release];
 }
 
 @end

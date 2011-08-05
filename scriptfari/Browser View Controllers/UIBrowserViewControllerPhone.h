@@ -10,4 +10,6 @@
 
 @interface UIBrowserViewControllerPhone : UIBrowserViewController
 
+- (IBAction)showScriptManager:(id)sender;
+
 @end

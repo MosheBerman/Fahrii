@@ -80,7 +80,18 @@
 #pragma mark - Web View delegate
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-
+    
+    //
+    //  Show an alert view
+    //
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+                                                    message:[error localizedDescription]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    [alert release];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -89,7 +100,7 @@
     //  Load up userscripts over here...
     //
     
-    
+    [self runApplicableUserscripts];
 
 }
 
@@ -209,13 +220,17 @@
 
 #pragma mark - Install the Userscript
 
+//
+//  Parse and read out the script, then save it.
+//
+
 - (void) installUserScript{
-    
-    //
-    //  TODO: Parse and read out the script
-    //
-    
+
     NSError *error = nil;
+
+    //
+    //  TODO: detect correct encoding
+    //
     
     NSString *scriptText = [NSString stringWithContentsOfURL:self.workingURL encoding:NSUTF8StringEncoding error:&error];
     
@@ -223,7 +238,7 @@
     //  Check for an error. If the string loaded, parse the script
     //
     
-    NSMutableDictionary *scriptInfo;
+    NSMutableDictionary *scriptInfo = [[[NSMutableDictionary alloc] init] autorelease];
     
     if (error != nil) {
         
@@ -315,7 +330,7 @@
     
     NSArray *executionRules = [context executeFetchRequest:fetchRequest error:&error];
     
-    NSLog(@"ExecutionRules: %@", [executionRules description]);
+    [fetchRequest release];
     
     //
     //  Filter duplicate include/exclude directives
@@ -442,6 +457,10 @@
         NSLog(@"Could not save script as %@. Error: %@", pathToSaveTo, [error localizedDescription]);
     }
     
+    //
+    //  Save the path of the script so we can get at when we need to!
+    //
+    
     [newScript setPathToScript:[pathToSaveTo absoluteString]];
     
     [context save:&error];
@@ -470,9 +489,9 @@
     
 }
 
-     //
-     //
-     //
+//
+//  Parse a userscript for useful meta data
+//
      
 -(NSMutableDictionary *)parseUserscriptString:(NSString *)script{
 
@@ -554,6 +573,86 @@
 
 
 //
+//  Run the applicable user scripts
+//
+
+- (void) runApplicableUserscripts{
+    
+    //
+    //  Grab a reference to the App Delegate's managed object context
+    //
+    
+    scriptfariAppDelegate *delegate = ((scriptfariAppDelegate *)[[UIApplication sharedApplication] delegate]);
+    NSManagedObjectContext *context = delegate.managedObjectContext;
+    
+    //
+    //  Get a list of all of the userscripts
+    //
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"Userscript" inManagedObjectContext:context]];
+    
+    NSError *error = nil;
+    
+    NSArray *scripts = [context executeFetchRequest:fetchRequest error:&error];
+
+    NSMutableArray *candidatesForInclude = [[NSMutableArray alloc] init];
+    
+    //
+    //  Add all scripts with applicable includes
+    //
+    
+    for (Userscript *script in scripts) {        
+        for(ExecutionRule *rule in script.includeAndExcludes){
+            if ([rule.URLString matchesURL:self.workingURL] && [rule.RuleType boolValue] == YES) {
+                [candidatesForInclude addObject:script]; 
+            }
+            
+        }
+    }
+    
+    //
+    //  Check for scripts that have excludes
+    //
+    
+    NSMutableArray *scriptsToExecute = [[NSMutableArray alloc] init];    
+    
+    for (Userscript *script in candidatesForInclude) {
+        
+        BOOL hasContradictingExclude = NO;
+        
+        for(ExecutionRule *rule in script.includeAndExcludes){
+            if ([rule.URLString matchesURL:self.workingURL] && [rule.RuleType boolValue] == NO) {
+                hasContradictingExclude = YES;
+            }   
+        }
+        
+        if (!hasContradictingExclude) {
+            [scriptsToExecute addObject:script];
+        }
+    }
+    
+    [candidatesForInclude release];
+    
+    //
+    //  Run the remaining scripts
+    //
+    
+    for (Userscript *script in scriptsToExecute) {
+        
+        [self.browser stringByEvaluatingJavaScriptFromString:[NSString stringWithContentsOfURL:[NSURL URLWithString:script.pathToScript] encoding:NSUTF8StringEncoding error:&error]];
+    }
+    
+    [scriptsToExecute release];
+    [fetchRequest release];
+
+}
+
+
+
+#pragma mark - Utility methods
+
+//
 //  Create a UUID
 //
 
@@ -572,7 +671,7 @@
     //
     
     [uuidString autorelease];
-    CFRetain(uuid);
+    CFRelease(uuid);
     
     return uuidString;
 }

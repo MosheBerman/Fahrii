@@ -28,5 +28,10 @@
 
 - (NSString *)valueForUserscriptKeyword:(NSString *)keyword;
 
+//
+//  Check if a given string matches a URL
+//
+
+- (BOOL) matchesURL:(NSURL *)anotherURL;
 
 @end

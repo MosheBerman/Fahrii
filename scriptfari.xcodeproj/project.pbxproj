@@ -20,6 +20,8 @@
 		463857E713EB03C7008642E6 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 463857E613EB03C7008642E6 /* CoreData.framework */; };
 		463857EB13EB03E6008642E6 /* Fahrii.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 463857E913EB03E6008642E6 /* Fahrii.xcdatamodeld */; };
 		463857EF13EB0957008642E6 /* UIBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 463857ED13EB0957008642E6 /* UIBrowserViewController.m */; };
+		46670E5713EB8E5A00B06495 /* UIScriptManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46670E5613EB8E5A00B06495 /* UIScriptManagerViewController.m */; };
+		46670E5C13EBB90100B06495 /* ScriptCellPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46670E5B13EBB90100B06495 /* ScriptCellPhone.xib */; };
 		46B096A213EB13ED00A9DC85 /* UIBrowserViewControllerPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B096A013EB13ED00A9DC85 /* UIBrowserViewControllerPhone.m */; };
 		46B096A313EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B096A113EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib */; };
 		46B096A613EB2B1400A9DC85 /* Userscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B096A513EB2B1400A9DC85 /* Userscript.m */; };
@@ -48,6 +50,9 @@
 		463857EA13EB03E6008642E6 /* Fahrii.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Fahrii.xcdatamodel; sourceTree = "<group>"; };
 		463857EC13EB0957008642E6 /* UIBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBrowserViewController.h; path = "Browser View Controllers/UIBrowserViewController.h"; sourceTree = "<group>"; };
 		463857ED13EB0957008642E6 /* UIBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIBrowserViewController.m; path = "Browser View Controllers/UIBrowserViewController.m"; sourceTree = "<group>"; };
+		46670E5513EB8E5A00B06495 /* UIScriptManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIScriptManagerViewController.h; path = "Script Manager/UIScriptManagerViewController.h"; sourceTree = "<group>"; };
+		46670E5613EB8E5A00B06495 /* UIScriptManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIScriptManagerViewController.m; path = "Script Manager/UIScriptManagerViewController.m"; sourceTree = "<group>"; };
+		46670E5B13EBB90100B06495 /* ScriptCellPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScriptCellPhone.xib; path = "Script Manager/ScriptCellPhone.xib"; sourceTree = "<group>"; };
 		46B0969F13EB13ED00A9DC85 /* UIBrowserViewControllerPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBrowserViewControllerPhone.h; path = "Browser View Controllers/UIBrowserViewControllerPhone.h"; sourceTree = "<group>"; };
 		46B096A013EB13ED00A9DC85 /* UIBrowserViewControllerPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIBrowserViewControllerPhone.m; path = "Browser View Controllers/UIBrowserViewControllerPhone.m"; sourceTree = "<group>"; };
 		46B096A113EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIBrowserViewControllerPhone.xib; path = "Browser View Controllers/UIBrowserViewControllerPhone.xib"; sourceTree = "<group>"; };
@@ -110,6 +115,8 @@
 				4637C7BA134CB4D3005A989F /* scriptfariAppDelegate.m */,
 				463857EC13EB0957008642E6 /* UIBrowserViewController.h */,
 				463857ED13EB0957008642E6 /* UIBrowserViewController.m */,
+				46670E5513EB8E5A00B06495 /* UIScriptManagerViewController.h */,
+				46670E5613EB8E5A00B06495 /* UIScriptManagerViewController.m */,
 				46B096AE13EB32B100A9DC85 /* Categories */,
 				4637C7BC134CB4D3005A989F /* iPhone */,
 				4637C7C3134CB4D3005A989F /* iPad */,
@@ -139,6 +146,7 @@
 				46B0969F13EB13ED00A9DC85 /* UIBrowserViewControllerPhone.h */,
 				46B096A013EB13ED00A9DC85 /* UIBrowserViewControllerPhone.m */,
 				46B096A113EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib */,
+				46670E5B13EBB90100B06495 /* ScriptCellPhone.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -229,6 +237,7 @@
 				4637C7C2134CB4D3005A989F /* MainWindow_iPhone.xib in Resources */,
 				4637C7C9134CB4D3005A989F /* MainWindow_iPad.xib in Resources */,
 				46B096A313EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib in Resources */,
+				46670E5C13EBB90100B06495 /* ScriptCellPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +258,7 @@
 				46B096A613EB2B1400A9DC85 /* Userscript.m in Sources */,
 				46B096AA13EB2B9C00A9DC85 /* ExecutionRule.m in Sources */,
 				46B096AD13EB32AB00A9DC85 /* NSString+USerscriptParsing.m in Sources */,
+				46670E5713EB8E5A00B06495 /* UIScriptManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
