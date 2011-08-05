@@ -2,7 +2,7 @@
 // @name Hello Some Of The World
 // @author Moshe Berman
 // @namespace mosheberman.com
-// @description example script to alert "Hello world!" on some pages
+// @description Example script to alert "Hello world!" on some pages
 // @include http://google.com
 // @include http://www.google.com
 // @include http://mosheberman.com

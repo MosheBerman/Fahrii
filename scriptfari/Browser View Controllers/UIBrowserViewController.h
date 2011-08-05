@@ -55,6 +55,14 @@
 - (void) runApplicableUserscripts;
 
 //
+//  Go Forward/Back
+//
+
+
+- (IBAction)goBack:(id)sender;
+- (IBAction)goForward:(id)sender;
+
+//
 //  Create a UUID
 //
 

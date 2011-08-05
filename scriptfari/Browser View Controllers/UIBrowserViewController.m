@@ -157,7 +157,8 @@
         //  Store the "working URL".
         //
         
-        self.workingURL = candidateURL;
+
+        [self setWorkingURL:candidateURL];
         
         //
         //  Check if we're installing a userscript
@@ -297,8 +298,6 @@
         [scriptInfo setObject:@"" forKey:@"description"];
     }
     
-    
-    
     //
     //  Create a script managed object
     //
@@ -331,7 +330,7 @@
     NSArray *executionRules = [context executeFetchRequest:fetchRequest error:&error];
     
     [fetchRequest release];
-    
+
     //
     //  Filter duplicate include/exclude directives
     //
@@ -354,6 +353,7 @@
         if ([URLForRule isEqualToString:@"*"]) {
             [newScript setIncludeEverywhere:[NSNumber numberWithBool:YES]];
         }
+        
         for (ExecutionRule *rule in executionRules) {
             if ([rule.RuleType boolValue] == YES && [rule.URLString isEqualToString:URLForRule]) {
                 
@@ -525,6 +525,15 @@
         if ([line containsKeyWord:@"namespace"] && [scriptInfo objectForKey:@"namespace"] == nil) {
             [scriptInfo setObject:[line valueForUserscriptKeyword:@"namespace"] forKey:@"namespace"];   
         }
+
+        
+        //
+        //  Parse the script nam3
+        //
+        
+        if ([line containsKeyWord:@"name"]) {
+            [scriptInfo setObject:[line valueForUserscriptKeyword:@"name"] forKey:@"name"];   
+        }
         
         //
         //  Read out the description.
@@ -555,8 +564,6 @@
             *stop = YES;
         }
     }];
-    
-    NSLog(@"Done.");
     
     //
     //  Store includes and excludes in the dictionary
@@ -604,6 +611,7 @@
     
     for (Userscript *script in scripts) {        
         for(ExecutionRule *rule in script.includeAndExcludes){
+            NSLog(@"Rule: %@", [rule URLString]);
             if ([rule.URLString matchesURL:self.workingURL] && [rule.RuleType boolValue] == YES) {
                 [candidatesForInclude addObject:script]; 
             }
@@ -649,6 +657,17 @@
 }
 
 
+
+#pragma mark - History
+
+- (IBAction)goBack:(id)sender{
+    [self.browser goBack];
+}
+
+
+- (IBAction)goForward:(id)sender{
+    [self.browser goForward];
+}
 
 #pragma mark - Utility methods
 

@@ -39,7 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    NSLog(@"View will appear.");
+
     
     [self.navBar setFrame:CGRectMake(0, 0, self.navBar.frame.size.width, self.navBar.frame.size.height)];
 }
@@ -53,7 +53,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
@@ -74,5 +74,7 @@
     
     [navController release];
 }
+
+
 
 @end

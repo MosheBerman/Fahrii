@@ -71,7 +71,7 @@
 - (BOOL) matchesURL:(NSURL *)anotherURL{
 
     NSURL *selfAsURL = [NSURL URLWithString:self];
-    
+    NSLog(@"Self: %@", self);
     //
     //  Wildcard
     //
@@ -104,7 +104,6 @@
         NSLog(@"Identical.");
         return YES;
     }
-    
     
     //
     //  TODO: Compare subdomains...
