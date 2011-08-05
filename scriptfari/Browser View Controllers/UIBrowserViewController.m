@@ -250,7 +250,8 @@
     //  Grab a reference to the App Delegate's managed object context
     //
     
-    NSManagedObjectContext *context = ((scriptfariAppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+    scriptfariAppDelegate *delegate = ((scriptfariAppDelegate *)[[UIApplication sharedApplication] delegate]);
+    NSManagedObjectContext *context = delegate.managedObjectContext;
     
     //
     //  If there is no user supplied name, 
@@ -258,7 +259,10 @@
     //
     
     if ([scriptInfo objectForKey:@"name"] == nil) {
-        [scriptInfo setObject:[self.workingURL baseURL] forKey:@"name"];
+        
+        NSString *defaultName = [[[self.workingURL URLByDeletingPathExtension] URLByDeletingPathExtension] lastPathComponent];
+        
+        [scriptInfo setObject:defaultName forKey:@"name"];
     }    
     
     //
@@ -278,6 +282,8 @@
         [scriptInfo setObject:@"" forKey:@"description"];
     }
     
+    
+    
     //
     //  Create a script managed object
     //
@@ -290,10 +296,15 @@
     
     [newScript setScriptAuthor:[scriptInfo valueForKey:@"author"]];
     [newScript setScriptDescription:[scriptInfo valueForKey:@"description"]];
+    //  TODO: Handle saving of icon
+    [newScript setScriptIconPath:@""];
     [newScript setScriptInstallDate:[NSDate date]];
     [newScript setScriptName:[scriptInfo valueForKey:@"name"]];
     [newScript setNamespaceOfScript:[scriptInfo valueForKey:@"namespace"]];
     [newScript setScriptVersion:[scriptInfo objectForKey:@"version"]];
+    
+    //This defaults to "no", but we will change it later if necessary
+    [newScript setIncludeEverywhere:[NSNumber numberWithBool:NO]];    
     
     //
     //  Load existing ExecutionRules
@@ -304,43 +315,136 @@
     
     NSArray *executionRules = [context executeFetchRequest:fetchRequest error:&error];
     
-    for (ExecutionRule *rule in executionRules) {
-       
+    NSLog(@"ExecutionRules: %@", [executionRules description]);
+    
+    //
+    //  Filter duplicate include/exclude directives
+    //
+    
+    NSSet *includeRules = [NSSet setWithArray:[scriptInfo objectForKey:@"includes"]];
+    NSSet *excludeRules = [NSSet setWithArray:[scriptInfo objectForKey:@"excludes"]];
+    
+    //
+    //  Set up the includes
+    //
+    
+    for (NSString *URLForRule in includeRules) {
+        
         //
-        //  Check the includes/excludes for existing entities
-        //
-        //  YES is include, NO is exclude
+        //  Create a flag to check if the rule exists
         //
         
-        if([rule.RuleType boolValue] == YES){
-            for (NSString *URLAsString in [scriptInfo objectForKey:@"includes"]){
-                if ([rule.URLString isEqualToString:URLAsString]) {
-                    //
-                    //  Add include
-                    //
-                }
+        BOOL ruleExists = NO;
+        
+        if ([URLForRule isEqualToString:@"*"]) {
+            [newScript setIncludeEverywhere:[NSNumber numberWithBool:YES]];
+        }
+        for (ExecutionRule *rule in executionRules) {
+            if ([rule.RuleType boolValue] == YES && [rule.URLString isEqualToString:URLForRule]) {
+                
+                //
+                //  We found a matching rule that exists
+                //
+                
+                ruleExists = YES;
+
+                //
+                //
+                //
+                
+                [newScript addIncludeAndExcludesObject:rule];
             }
         }
         
-        if([rule.RuleType boolValue] == NO){
-            for (NSString *URLAsString in [scriptInfo objectForKey:@"excludes"]){
-                if ([rule.URLString isEqualToString:URLAsString]) {
-                    
-                    //
-                    //  Add exclude
-                    //
-                }
-            }
+        //
+        //  Create new Rule
+        //
+        
+        if (!ruleExists) {
+            
+            NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"ExecutionRule" inManagedObjectContext:context];
+            
+            ExecutionRule *tempRule = [[ExecutionRule alloc]initWithEntity:entityDesc insertIntoManagedObjectContext:context];
+            
+            [tempRule setRuleType:[NSNumber numberWithBool:YES]];
+            [tempRule setURLString:URLForRule];
+            
+            [newScript addIncludeAndExcludesObject:tempRule];
+            
+            [tempRule release];
+            
         }
     }
     
     //
-    //  Store metadata in a Managed Object
+    //  Set up the includes
     //
     
+    for (NSString *URLForRule in excludeRules) {
+        
+        //
+        //  Create a flag to check if the rule exists
+        //
+        
+        BOOL ruleExists = NO;
+        
+        for (ExecutionRule *rule in executionRules) {
+            if ([rule.RuleType boolValue] == NO && [rule.URLString isEqualToString:URLForRule]) {
+                
+                //
+                //  We found a matching rule that exists
+                //
+                
+                ruleExists = YES;
+                
+                //
+                //
+                //
+                
+                [newScript addIncludeAndExcludesObject:rule];
+            }
+        }
+        
+        //
+        //  Create new Rule
+        //
+        
+        if (!ruleExists) {
+            
+            NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"ExecutionRule" inManagedObjectContext:context];
+            
+            ExecutionRule *tempRule = [[ExecutionRule alloc]initWithEntity:entityDesc insertIntoManagedObjectContext:context];
+            
+            [tempRule setRuleType:[NSNumber numberWithBool:NO]];
+            [tempRule setURLString:URLForRule];
+            
+            [newScript addIncludeAndExcludesObject:tempRule];
+            
+            [tempRule release];
+            
+        }
+    }
+    
     //
-    //  Save
+    //  Save the script to disc, then the metadata
     //
+    
+    NSString *scriptName = [self UUIDAsAnNSString];
+    
+    NSURL *pathToDocumentsDirectory = [delegate applicationDocumentsDirectory];
+    
+    NSURL *pathToSaveTo = [[pathToDocumentsDirectory URLByAppendingPathComponent:scriptName] URLByAppendingPathExtension:@"user.js"];
+    [scriptText writeToURL:pathToSaveTo atomically:YES encoding:NSUTF8StringEncoding error:&error];
+    
+    if (error == nil) {
+        NSLog(@"Saved userscipt as %@", pathToSaveTo);
+    }else{
+        NSLog(@"Could not save script as %@. Error: %@", pathToSaveTo, [error localizedDescription]);
+    }
+    
+    [newScript setPathToScript:[pathToSaveTo absoluteString]];
+    
+    [context save:&error];
     
     if (error != nil) {
 
@@ -400,9 +504,7 @@
         //
         
         if ([line containsKeyWord:@"namespace"] && [scriptInfo objectForKey:@"namespace"] == nil) {
-            
-            [scriptInfo setObject:[line valueForUserscriptKeyword:@"namespace"] forKey:@"namespace"];
-            
+            [scriptInfo setObject:[line valueForUserscriptKeyword:@"namespace"] forKey:@"namespace"];   
         }
         
         //
@@ -449,5 +551,31 @@
     
     return scriptInfo;
 }
+
+
+//
+//  Create a UUID
+//
+
+- (NSString *)UUIDAsAnNSString{
+    
+    //
+    //  Create a UUID and convert it to NSString
+    //
+    
+    
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    NSString *uuidString = (NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    
+    //
+    //  Memory management
+    //
+    
+    [uuidString autorelease];
+    CFRetain(uuid);
+    
+    return uuidString;
+}
+
 
 @end

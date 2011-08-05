@@ -48,4 +48,10 @@
 
 -(NSMutableDictionary *)parseUserscriptString:(NSString *)script;
 
+//
+//  Create a UUID
+//
+
+- (NSString *)UUIDAsAnNSString;
+
 @end
