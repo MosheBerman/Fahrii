@@ -8,6 +8,7 @@
 
 #import "UIScriptManagerViewController.h"
 #import "scriptfariAppDelegate.h"
+#import "UIScriptManagerDetailViewPhone.h"
 
 @implementation UIScriptManagerViewController
 
@@ -50,13 +51,19 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.parentViewController action:@selector(dismissModalViewControllerAnimated:)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self.parentViewController action:@selector(dismissModalViewControllerAnimated:)] autorelease];
     
     //
     //  Resize the row height
     //
     
     self.tableView.rowHeight = 90.0;
+    
+    //
+    //
+    //
+    
+    self.title = @"Installed Scripts";
     
     //
     //  Run the query to load up the groups
@@ -74,7 +81,7 @@
         
         NSString *errorString = [NSString stringWithFormat: @"There was an error findinding existing groups. %@", [error localizedDescription]];
         
-       NSLog(@"Could not load scripts. %@", errorString);
+        NSLog(@"Could not load scripts. %@", errorString);
         
     }
   
@@ -131,8 +138,6 @@
     
     id <NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     
-    NSLog(@"Rows: %i", [sectionInfo numberOfObjects]);
-    
     return [sectionInfo numberOfObjects];
 }
 
@@ -151,15 +156,14 @@
         
     }
     
-    [((UILabel *)[cell viewWithTag:5]) setText:((Userscript *)[fetchedResultsController objectAtIndexPath:indexPath]).scriptName];
+    [((UILabel *)[cell viewWithTag:5]) setText:[NSString stringWithFormat:@"%@", ((Userscript *)[fetchedResultsController objectAtIndexPath:indexPath]).scriptName]];
     
     [((UILabel *)[cell viewWithTag:6]) setText:((Userscript *)[fetchedResultsController objectAtIndexPath:indexPath]).scriptDescription];
     
     if ([((Userscript *)[fetchedResultsController objectAtIndexPath:indexPath]).scriptDescription isEqualToString:@""]) {
         [((UILabel *)[cell viewWithTag:6]) setText:@"No description is available."];
     }
-    
-    [((UILabel *)[cell viewWithTag:7]) setText:[((Userscript *)[fetchedResultsController objectAtIndexPath:indexPath]).scriptVersion description]];    
+       
     
     // Configure the cell...
     
@@ -175,19 +179,44 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        //
+        //  Reference the MOC
+        //
+        
+        scriptfariAppDelegate *delegate = ((scriptfariAppDelegate *)[[UIApplication sharedApplication] delegate]);
+        NSManagedObjectContext *context = delegate.managedObjectContext;
+        
+        NSString *pathToScript = ((Userscript *)[self.fetchedResultsController objectAtIndexPath:indexPath]).pathToScript;
+        
+        NSError *error = nil;
+        
+        [[NSFileManager defaultManager]removeItemAtPath:pathToScript error:&error];
+        
+        if (error != nil) {
+            
+            [context deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+            
+            [context save:&error];
+            
+            if (error != nil) {
+                
+
+            }            
+        }
+        
+        [self.fetchedResultsController performFetch:&error];
+        
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -217,6 +246,10 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      [detailViewController release];
      */
+    
+    UIScriptManagerDetailViewPhone *details = [[UIScriptManagerDetailViewPhone alloc] initWithNibName:@"UIScriptManagerDetailViewPhone" bundle:nil];
+    [self.navigationController pushViewController:details animated:YES];
+    [details release];
 }
 
 - (NSFetchedResultsController *)fetchedResultsController{
@@ -245,7 +278,7 @@
     //
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"scriptName" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"scriptName" ascending:YES];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
     
     [fetchRequest setSortDescriptors:sortDescriptors];

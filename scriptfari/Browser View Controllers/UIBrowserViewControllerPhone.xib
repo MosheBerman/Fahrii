@@ -107,6 +107,12 @@
 									<reference key="IBUICustomView" ref="881776307"/>
 									<reference key="IBUINavigationItem" ref="610089222"/>
 								</object>
+								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="306621306">
+									<string key="IBUITitle">Scripts</string>
+									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+									<int key="IBUIStyle">1</int>
+									<reference key="IBUINavigationItem" ref="610089222"/>
+								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</object>
@@ -117,7 +123,7 @@
 						<string key="NSFrame">{{0, 43}, {320, 393}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="370545226"/>
+						<reference key="NSNextKeyView" ref="601250538"/>
 						<string key="NSReuseIdentifierKey">_NS:600</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">1</int>
@@ -128,7 +134,7 @@
 						<int key="IBUIDataDetectorTypes">1</int>
 						<bool key="IBUIDetectsPhoneNumbers">YES</bool>
 					</object>
-					<object class="IBUIToolbar" id="370545226">
+					<object class="IBUIToolbar" id="601250538">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{0, 436}, {320, 44}}</string>
@@ -141,43 +147,22 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSMutableArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIBarButtonItem" id="892511285">
+							<object class="IBUIBarButtonItem" id="64421055">
 								<string key="IBUITitle">Back</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
-								<reference key="IBUIToolbar" ref="370545226"/>
+								<reference key="IBUIToolbar" ref="601250538"/>
 							</object>
-							<object class="IBUIBarButtonItem" id="357252117">
+							<object class="IBUIBarButtonItem" id="909341507">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIToolbar" ref="370545226"/>
+								<reference key="IBUIToolbar" ref="601250538"/>
 								<int key="IBUISystemItemIdentifier">5</int>
 							</object>
-							<object class="IBUIBarButtonItem" id="466730519">
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIToolbar" ref="370545226"/>
-								<int key="IBUISystemItemIdentifier">5</int>
-							</object>
-							<object class="IBUIBarButtonItem" id="306621306">
-								<string key="IBUITitle">Scripts</string>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIStyle">1</int>
-								<reference key="IBUIToolbar" ref="370545226"/>
-							</object>
-							<object class="IBUIBarButtonItem" id="380805642">
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIToolbar" ref="370545226"/>
-								<int key="IBUISystemItemIdentifier">5</int>
-							</object>
-							<object class="IBUIBarButtonItem" id="862034404">
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIToolbar" ref="370545226"/>
-								<int key="IBUISystemItemIdentifier">5</int>
-							</object>
-							<object class="IBUIBarButtonItem" id="755544511">
+							<object class="IBUIBarButtonItem" id="487080945">
 								<string key="IBUITitle">Forward</string>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIStyle">1</int>
-								<reference key="IBUIToolbar" ref="370545226"/>
+								<reference key="IBUIToolbar" ref="601250538"/>
 							</object>
 						</object>
 					</object>
@@ -274,7 +259,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">goBack:</string>
-						<reference key="source" ref="892511285"/>
+						<reference key="source" ref="64421055"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">19</int>
@@ -282,7 +267,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">goForward:</string>
-						<reference key="source" ref="755544511"/>
+						<reference key="source" ref="487080945"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">20</int>
@@ -306,7 +291,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="238180558"/>
 							<reference ref="934349609"/>
-							<reference ref="370545226"/>
+							<reference ref="601250538"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -337,6 +322,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1063752321"/>
+							<reference ref="306621306"/>
 						</object>
 						<reference key="parent" ref="238180558"/>
 					</object>
@@ -361,53 +347,34 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
-						<reference key="object" ref="370545226"/>
+						<reference key="object" ref="601250538"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="892511285"/>
-							<reference ref="755544511"/>
-							<reference ref="380805642"/>
-							<reference ref="306621306"/>
-							<reference ref="357252117"/>
-							<reference ref="862034404"/>
-							<reference ref="466730519"/>
+							<reference ref="64421055"/>
+							<reference ref="487080945"/>
+							<reference ref="909341507"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="892511285"/>
-						<reference key="parent" ref="370545226"/>
+						<reference key="object" ref="64421055"/>
+						<reference key="parent" ref="601250538"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">18</int>
-						<reference key="object" ref="755544511"/>
-						<reference key="parent" ref="370545226"/>
+						<reference key="object" ref="487080945"/>
+						<reference key="parent" ref="601250538"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">21</int>
-						<reference key="object" ref="380805642"/>
-						<reference key="parent" ref="370545226"/>
+						<int key="objectID">23</int>
+						<reference key="object" ref="909341507"/>
+						<reference key="parent" ref="601250538"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">13</int>
 						<reference key="object" ref="306621306"/>
-						<reference key="parent" ref="370545226"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="357252117"/>
-						<reference key="parent" ref="370545226"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">23</int>
-						<reference key="object" ref="862034404"/>
-						<reference key="parent" ref="370545226"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="466730519"/>
-						<reference key="parent" ref="370545226"/>
+						<reference key="parent" ref="610089222"/>
 					</object>
 				</object>
 			</object>
@@ -426,10 +393,7 @@
 					<string>16.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
-					<string>21.IBPluginDependency</string>
-					<string>22.IBPluginDependency</string>
 					<string>23.IBPluginDependency</string>
-					<string>24.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
@@ -439,9 +403,6 @@
 					<string>UIBrowserViewControllerPhone</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

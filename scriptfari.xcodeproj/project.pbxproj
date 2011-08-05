@@ -22,6 +22,9 @@
 		463857EF13EB0957008642E6 /* UIBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 463857ED13EB0957008642E6 /* UIBrowserViewController.m */; };
 		46670E5713EB8E5A00B06495 /* UIScriptManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46670E5613EB8E5A00B06495 /* UIScriptManagerViewController.m */; };
 		46670E5C13EBB90100B06495 /* ScriptCellPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46670E5B13EBB90100B06495 /* ScriptCellPhone.xib */; };
+		46670E5F13EBC74400B06495 /* NSURL+CustomCompare.m in Sources */ = {isa = PBXBuildFile; fileRef = 46670E5E13EBC74400B06495 /* NSURL+CustomCompare.m */; };
+		467918B913EBDA64001F2674 /* UIScriptManagerDetailViewPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 467918B713EBDA64001F2674 /* UIScriptManagerDetailViewPhone.m */; };
+		467918BA13EBDA64001F2674 /* UIScriptManagerDetailViewPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 467918B813EBDA64001F2674 /* UIScriptManagerDetailViewPhone.xib */; };
 		46B096A213EB13ED00A9DC85 /* UIBrowserViewControllerPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B096A013EB13ED00A9DC85 /* UIBrowserViewControllerPhone.m */; };
 		46B096A313EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46B096A113EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib */; };
 		46B096A613EB2B1400A9DC85 /* Userscript.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B096A513EB2B1400A9DC85 /* Userscript.m */; };
@@ -53,6 +56,11 @@
 		46670E5513EB8E5A00B06495 /* UIScriptManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIScriptManagerViewController.h; path = "Script Manager/UIScriptManagerViewController.h"; sourceTree = "<group>"; };
 		46670E5613EB8E5A00B06495 /* UIScriptManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIScriptManagerViewController.m; path = "Script Manager/UIScriptManagerViewController.m"; sourceTree = "<group>"; };
 		46670E5B13EBB90100B06495 /* ScriptCellPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ScriptCellPhone.xib; path = "Script Manager/ScriptCellPhone.xib"; sourceTree = "<group>"; };
+		46670E5D13EBC74400B06495 /* NSURL+CustomCompare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+CustomCompare.h"; path = "scriptfari/Categories/NSURL+CustomCompare.h"; sourceTree = "<group>"; };
+		46670E5E13EBC74400B06495 /* NSURL+CustomCompare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+CustomCompare.m"; path = "scriptfari/Categories/NSURL+CustomCompare.m"; sourceTree = "<group>"; };
+		467918B613EBDA64001F2674 /* UIScriptManagerDetailViewPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScriptManagerDetailViewPhone.h; sourceTree = "<group>"; };
+		467918B713EBDA64001F2674 /* UIScriptManagerDetailViewPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIScriptManagerDetailViewPhone.m; sourceTree = "<group>"; };
+		467918B813EBDA64001F2674 /* UIScriptManagerDetailViewPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIScriptManagerDetailViewPhone.xib; sourceTree = "<group>"; };
 		46B0969F13EB13ED00A9DC85 /* UIBrowserViewControllerPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIBrowserViewControllerPhone.h; path = "Browser View Controllers/UIBrowserViewControllerPhone.h"; sourceTree = "<group>"; };
 		46B096A013EB13ED00A9DC85 /* UIBrowserViewControllerPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UIBrowserViewControllerPhone.m; path = "Browser View Controllers/UIBrowserViewControllerPhone.m"; sourceTree = "<group>"; };
 		46B096A113EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UIBrowserViewControllerPhone.xib; path = "Browser View Controllers/UIBrowserViewControllerPhone.xib"; sourceTree = "<group>"; };
@@ -147,6 +155,9 @@
 				46B096A013EB13ED00A9DC85 /* UIBrowserViewControllerPhone.m */,
 				46B096A113EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib */,
 				46670E5B13EBB90100B06495 /* ScriptCellPhone.xib */,
+				467918B613EBDA64001F2674 /* UIScriptManagerDetailViewPhone.h */,
+				467918B713EBDA64001F2674 /* UIScriptManagerDetailViewPhone.m */,
+				467918B813EBDA64001F2674 /* UIScriptManagerDetailViewPhone.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -177,6 +188,8 @@
 			children = (
 				46B096AB13EB32AB00A9DC85 /* NSString+USerscriptParsing.h */,
 				46B096AC13EB32AB00A9DC85 /* NSString+USerscriptParsing.m */,
+				46670E5D13EBC74400B06495 /* NSURL+CustomCompare.h */,
+				46670E5E13EBC74400B06495 /* NSURL+CustomCompare.m */,
 			);
 			name = Categories;
 			path = ..;
@@ -238,6 +251,7 @@
 				4637C7C9134CB4D3005A989F /* MainWindow_iPad.xib in Resources */,
 				46B096A313EB13ED00A9DC85 /* UIBrowserViewControllerPhone.xib in Resources */,
 				46670E5C13EBB90100B06495 /* ScriptCellPhone.xib in Resources */,
+				467918BA13EBDA64001F2674 /* UIScriptManagerDetailViewPhone.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +273,8 @@
 				46B096AA13EB2B9C00A9DC85 /* ExecutionRule.m in Sources */,
 				46B096AD13EB32AB00A9DC85 /* NSString+USerscriptParsing.m in Sources */,
 				46670E5713EB8E5A00B06495 /* UIScriptManagerViewController.m in Sources */,
+				46670E5F13EBC74400B06495 /* NSURL+CustomCompare.m in Sources */,
+				467918B913EBDA64001F2674 /* UIScriptManagerDetailViewPhone.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

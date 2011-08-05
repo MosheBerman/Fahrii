@@ -79,6 +79,12 @@
 
 #pragma mark - Web View delegate
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+    
+    return YES;
+}
+
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     
     //
@@ -95,6 +101,8 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
+    
+    self.workingURL = webView.request.URL;
     
     //
     //  Load up userscripts over here...
@@ -132,6 +140,9 @@
 // http://stackoverflow.com/questions/1471201/how-to-validate-an-url-on-the-iphone/5081447#5081447 
 //
 
+//
+//  TODO: refactor to support clicking on userscripts
+//
 
 -(void)loadWebPageFromAddressBar{
  
@@ -145,7 +156,6 @@
         candidateURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@", self.addressBar.text]];
     }
     
-
     if (candidateURL && candidateURL.scheme && candidateURL.host) {
         
         //
@@ -287,7 +297,11 @@
     //
     
     if ([scriptInfo objectForKey:@"namespace"] == nil) {
-        [scriptInfo setObject:[self.workingURL baseURL] forKey:@"namespace"];
+        if (self.workingURL != nil) {
+                [scriptInfo setObject:[self.workingURL absoluteString]forKey:@"namespace"];
+        }else{
+            [scriptInfo setObject:@"none" forKey:@"namespace"];
+        }
     }
     
     //
@@ -611,8 +625,8 @@
     
     for (Userscript *script in scripts) {        
         for(ExecutionRule *rule in script.includeAndExcludes){
-            NSLog(@"Rule: %@", [rule URLString]);
-            if ([rule.URLString matchesURL:self.workingURL] && [rule.RuleType boolValue] == YES) {
+            NSString *url = [rule.URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            if ([[NSURL URLWithString:url] matchesURL:self.workingURL] && [rule.RuleType boolValue] == YES) {
                 [candidatesForInclude addObject:script]; 
             }
             
@@ -630,7 +644,8 @@
         BOOL hasContradictingExclude = NO;
         
         for(ExecutionRule *rule in script.includeAndExcludes){
-            if ([rule.URLString matchesURL:self.workingURL] && [rule.RuleType boolValue] == NO) {
+            NSString *url = [rule.URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];            
+            if ([[NSURL URLWithString:url] matchesURL:self.workingURL] && [rule.RuleType boolValue] == NO) {
                 hasContradictingExclude = YES;
             }   
         }
